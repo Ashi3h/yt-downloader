@@ -44,10 +44,11 @@ app.post('/api/info', async (req, res) => {
             addHeader: [
                 'referer:youtube.com',
                 'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
-            ]
+            ],
+            extractorArgs: 'youtube:player_client=ios,android,web'
         });
 
-        const allowedQualities = [240, 480, 720, 1080, 1440, 2160];
+        const allowedQualities = [144, 240, 360, 480, 720, 1080, 1440, 2160];
 
         let rawVideoFormats = info.formats
             .filter(f => f.url && f.vcodec !== 'none' && f.height && allowedQualities.includes(f.height));
@@ -146,7 +147,7 @@ io.on('connection', (socket) => {
                     'referer:youtube.com',
                     'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
                 ],
-                extractorArgs: 'youtube:player_client=android,web',
+                extractorArgs: 'youtube:player_client=ios,android,web',
                 concurrentFragments: 10,
                 httpChunkSize: '10M',
                 downloaderArgs: 'ffmpeg:-threads 4'
