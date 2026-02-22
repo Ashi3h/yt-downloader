@@ -4,7 +4,7 @@ import { Youtube, Search, Download, FileAudio, FileVideo, AlertCircle, CheckCirc
 import { io } from 'socket.io-client';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = 'https://ytd-r46v.onrender.com';
 const socket = io(API_URL);
 
 function App() {
